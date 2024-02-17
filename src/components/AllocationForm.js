@@ -1,17 +1,32 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const AllocationForm = (props) => {
-    const { dispatch,remaining  } = useContext(AppContext);
+    const { dispatch,remaining, currency  } = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
 
+    const ShowError = () =>{
+        toast.error(
+            `The value cannot exceed remaining funds : ${remaining}`,
+            {
+              position: 'top-center',
+              autoClose: false,
+              closeOnClick: true,
+              
+            }
+          );
+    }
+
     const submitEvent = () => {
 
             if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
+                ShowError();
                 setCost("");
                 return;
             }
@@ -58,14 +73,14 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
-
+                  <span style={{ marginRight: '0.1rem', marginLeft: '2rem' }}>{currency}</span>
                     <input
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={(event) => setCost(event.target.value)}>
+                        style={{ marginLeft: '0rem' , size: 10}}
+                        onChange={(event) => setCost(event.target.value.replace(/[^0-9]/g, ''))}>
                         </input>
 
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
