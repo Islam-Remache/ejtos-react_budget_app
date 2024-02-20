@@ -1,0 +1,16 @@
+.TiPlus {
+    color: white;
+    background-color: green;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+}
+
+.TiMinus {
+    
+    color: white;
+    background-color: red;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+}

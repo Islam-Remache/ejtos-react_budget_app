@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Budget = () => {
-    const { budget , expenses } = useContext(AppContext);
+    const { budget , expenses, currency } = useContext(AppContext);
     const [newBudget, setNewBudget] = useState(budget);
     const totalExpenses = expenses.reduce((total, item) => {
         return (total += item.cost);
@@ -37,7 +37,7 @@ const Budget = () => {
     }
     return (
 <div className='alert alert-secondary'>
-<span>Budget: £{budget}</span>
+<span>Budget: {currency}</span>
 <input type="number" step="10" value={newBudget} max='20000' onChange={handleBudgetChange}></input>
 </div>
     );

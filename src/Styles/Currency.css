@@ -1,0 +1,30 @@
+.alert.alert-success.label{
+    appearance: none;
+    width: 100%;
+    cursor:pointer;
+    background-color: #97d897;
+    color:white;
+
+}
+
+.alert.alert-success.list{
+    padding-left:0px;
+    padding-right:0px;
+    border: none;
+    outline: none;
+    width: 85px;
+    cursor:pointer;
+    background-color: #97d897;
+    color:white;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.alert.alert-success.list option:checked > option:hover{
+    background-color: white;
+}
+
+.alert.alert-success.list option{
+    color:black;
+}

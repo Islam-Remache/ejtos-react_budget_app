@@ -1,18 +1,43 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const Budget = () => {
-    const { currency } = useContext(AppContext);
-    const value = `Currency ${currency}`
+import '../Styles/Currency.css'
+
+const Currency = () => {
+    const { dispatch, currency } = useContext(AppContext);
+    const names = {
+        '£':"Pound",
+        '$':"Dollar",
+        '€':"Euro",
+        '₹':"Ruppee"
+    }
+
+    const handleSelect = (value)=>{
+        console.log(value);
+        dispatch({
+            type: 'CHG_CURRENCY',
+            payload: value,
+        });
+    }
+
+
+    
     
     return (
-      <div>
-        <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
-              <option defaultValue value={value} name="Currency">Add</option>
-        <option value="Reduce" name="Reduce">Reduce</option>
+
+
+        <label className="alert alert-success label" >Currency :
+        <select className="alert alert-success list" id="CurrSelect"       onfocus="this.size=4;"
+      onblur="this.size=0;"
+      onchange="this.size=1; this.blur()"  onChange={(event)=>handleSelect(event.target.value)}>
+            
+              <option value='$' name="Dollar" >$ Dollar</option>
+              <option value='£' name="Pound" selected>£ Pound</option>
+              <option value='€' name="Euro">€ Euro</option>
+              <option value='₹' name="Ruppee">₹ Ruppee</option>
         </select>
-    </div>
+        
+        </label>
+
     );
 };
-export default Budget;
+export default Currency;
